@@ -1,0 +1,206 @@
+/* Tipografía y estilos generales */
+:root {
+    --color-fondo-pagina: #f4e8c1; /* Tono de pergamino claro */
+    --color-fondo-principal: #e0d0a7; /* Pergamino ligeramente más oscuro */
+    --color-tinta: #3d342d; /* Marrón oscuro, casi negro */
+    --color-acento-principal: #9a8449; /* Oro envejecido para bordes y títulos */
+    --color-sombra-suave: rgba(0, 0, 0, 0.1);
+    --color-borde-fino: #c8b991;
+    --color-borde-grueso: #a3946e;
+    --color-rojo-dramatic: #8a0c0c; /* Para énfasis importante */
+
+    --fuente-cuerpo: 'MedievalSharp', serif;
+    --fuente-titulo: 'Uncial Antiqua', cursive;
+}
+
+body {
+    background-color: var(--color-fondo-pagina);
+    color: var(--color-tinta);
+    font-family: var(--fuente-cuerpo);
+    line-height: 1.8;
+    margin: 0;
+    padding: 20px;
+    text-rendering: optimizeLegibility;
+}
+
+p, h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color:var(--color-rojo-dramatic);
+    border-bottom-color: var(--color-acento-principal);
+}
+
+h1 {
+    font-family: var(--fuente-titulo);
+    color: var(--color-acento-principal);
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 0.5em;
+    text-shadow: 1px 1px 2px var(--color-sombra-suave);
+}
+
+/* Introducción */
+.introduction {
+    /* Diseño del fondo */
+    background-color: var(--color-fondo-principal);
+    background-image: url('../DnD\ Enciclopedia/images/pergamino.jpg');
+    border: 5px double var(--color-acento-principal);
+    border-style: ridge;
+
+    /* Layout y espaciado */
+    padding: 40px;
+    margin: 0 auto 40px auto;
+    max-width: 90%;
+    box-shadow: 0 4px 10px var(--color-sombra-suave);
+    text-align: justify;
+    position: relative;
+}
+.introduction p {
+    text-indent: 0;
+}
+.introduction p::first-letter {
+    /* Estilo de la primera letra */
+    float: left;
+    font-size: 4em;
+    line-height: 0.7;
+    font-weight: bold;
+    color: #b8860b;
+    margin-right: 10px;
+    padding-top: 5px;
+    font-family: var(--fuente-titulo);
+    animation: dropcap-fade-in 1s ease-in-out;
+}
+
+@keyframes dropcap-fade-in {
+    from { opacity:0; transform: translateY(-10px); }
+    to { opacity:1; transform: translateY(0px); }
+}
+
+.introduction b {
+    color: var(--color-rojo-dramatic);
+    font-size: 4em;
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-family: var(--fuente-titulo);
+}
+
+.introduction:hover {
+    /* Efecto al pasar el ratón */
+    box-shadow: 0 5px 20px rgba(184, 134, 11, 0.6);
+    transform: translateY(-2px);
+    transition: all 0.3s ease-in-out
+}
+
+/*Pestañas de los personajes*/
+.character-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/*Estilos de las fichas*/
+.character-ficha {
+    background-color: var(--color-fondo-principal);
+    border: 1px solid var(--color-borde-fino);
+    border-radius: 5px;
+    box-shadow: 3px 3px 8px var(--color-sombra-suave);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor:pointer;
+}
+.characer-ficha:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 15px var(--color-sombra-suave);
+}
+.character-ficha:not(.collapsed) .collapse-icon {
+    transform: rotate(180deg);
+}
+.character-ficha.collapsed .collapse-icon {
+    transform: rotate(0deg);
+}
+.ficha-contenido-principal {
+    padding: 20px;
+}
+.ficha-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--color-borde-fino);
+    padding-bottom: 15px;
+}
+.collapse-icon {
+    margin-left: auto;
+    font-size: 1.5em;
+    color: var(--color-rojo-dramatic);
+    transition: transform 0.3 ease;
+}
+.retrato {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 3px solid var(--color-acento-principal);
+    box-shadow: 0 0 5px rgba(154, 132, 73, 0.7);
+    cursor: zoom-in;
+    transition: transform 0.3s ease, box-shadow 0.3.ease;
+    z-index: 1;
+}
+.retrato.enlarged {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(4);
+    z-index: 1000;
+    width: 200px;
+    height: 200px;
+    border-color: #ffe08a;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(154, 132, 73, 0.8);
+    cursor: zoom-out;
+}
+.nombre-titulo {
+    font-family: var(--fuente-titulo);
+    color: var(--color-acento-principal);
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+.subtitulo {
+    font-style: italic;
+    font-size: 1.2em;
+    line-height: 1.4;
+    font-weight: bold;
+}
+.seccion-titulo {
+    font-family: var(--fuente-titulo);
+    color: var(--color-rojo-dramatic);
+    border-left: 5px solid var(--color-rojo-dramatic);
+    padding-left: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.historia-fija {
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease;
+    opacity: 1;
+}
+.character-ficha.collapsed .historia-fija {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+}
+
+.historia-fija b {
+    color: var(--color-rojo-dramatic);
+    font-style: italic;
+    font-weight: bold;
+}
